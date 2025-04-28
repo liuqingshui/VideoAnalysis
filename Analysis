@@ -1,0 +1,898 @@
+//学习资料
+ 
+(function() {
+    'use strict';
+    GM_addStyle('.menuWay1 {width:70px;height:36px; overflow:hidden;position:absolute; left:0; top:400px;z-index:99999;background-color:#FF34B3;border-radius:10px 10px 10px 10px;}'+
+                '.menuWay1 #junchangxiao{width:70px;height:36px;color:#000; text-decoration:none; font:bold 22px/30px arial, sans-serif; text-align:center;margin-left:10px; }'+
+                ' .menuHolder ul {padding:0; margin:0; list-style:none; position:absolute; left:1px; top:10px; width:0; height:0;}'+
+                '.menuHolder ul li {border-radius:0 0 300px 0; width:0; height:0;}'+
+                '.menuHolder ul li a {color:#000; text-decoration:none; font:bold 22px/30px arial, sans-serif; text-align:center;box-shadow:-5px 5px 5px rgba(0,0,0,0.4);-webkit-transform-origin:0 0;-moz-transform-origin:0 0;-ms-transform-origin:0 0;-o-transform-origin:0 0;transform-origin:0 0;}'+
+                '.menuHolder ul.p1 li {position:absolute; left:0px; top:1px;}'+
+                '.menuHolder li.s1 > a {position:absolute; display:block; width:70px; height:36px; background:	#FF0000; border-radius:10px 10px 10px 10px;}'+
+                '.menuHolder li.s2 > a {position:absolute; display:block; width:200px; padding-left:100px; height:200px; background:#ddd; border-radius:0 0 200px 0;}'+
+ 
+                '.menuHolder ul ul {-webkit-transform-origin:0 0;-moz-transform-origin:0 0;-ms-transform-origin:0 0;-o-transform-origin:0 0;transform-origin:0 0;-webkit-transform:rotate(90deg);-moz-transform:rotateZ(90deg);-ms-transform:rotate(90deg);-o-transform:rotate(90deg);transform:rotate(90deg);-webkit-transition:1s;-moz-transition:1s;-ms-transition:1s;-o-transition:1s;transition:1s;}'+
+ 
+ 
+                '.menuHolder li.s2:nth-of-type(9) > a {background:#A020F0; -webkit-transform:rotate(80deg);-moz-transform:rotateZ(80deg);-ms-transform:rotate(80deg);-o-transform:rotate(80deg);transform:rotate(80deg);}'+
+                '.menuHolder li.s2:nth-of-type(8) > a {background:#3366ff;-webkit-transform:rotate(70deg);-moz-transform:rotateZ(70deg);-ms-transform:rotate(70deg);-o-transform:rotate(70deg); transform:rotate(70deg);}'+
+                '.menuHolder li.s2:nth-of-type(7) > a {background:yellow; -webkit-transform:rotate(60deg); -moz-transform:rotateZ(60deg);-ms-transform:rotate(60deg);-o-transform:rotate(60deg); transform:rotate(60deg); }'+
+                
+                '.menuHolder li.s2:nth-of-type(6) > a {background:#CD6839;'+
+                '-webkit-transform:rotate(50deg);'+
+                '-moz-transform:rotateZ(50deg);'+
+                ' -ms-transform:rotate(50deg);'+
+                ' -o-transform:rotate(50deg);'+
+                '  transform:rotate(50deg);'+
+                ' }'+
+ 
+                '.menuHolder li.s2:nth-of-type(5) > a {background:orchid;'+
+                ' -webkit-transform:rotate(40deg);'+
+                ' -moz-transform:rotateZ(40deg);'+
+                '  -ms-transform:rotate(40deg);'+
+                '  -o-transform:rotate(40deg);'+
+                '  transform:rotate(40deg);'+
+                ' }'+
+                
+                '.menuHolder li.s2:nth-of-type(4) > a {background:springgreen;'+
+                '-webkit-transform:rotate(30deg);'+
+                '-moz-transform:rotateZ(30deg);'+
+                '-ms-transform:rotate(30deg);'+
+                '-o-transform:rotate(30deg);'+
+                'transform:rotate(30deg);'+
+                '}'+
+ 
+                '.menuHolder li.s2:nth-of-type(3) > a {background:#00ffff;'+
+                '-webkit-transform:rotate(20deg);'+
+                '-moz-transform:rotateZ(20deg);'+
+                '-ms-transform:rotate(20deg);'+
+                '-o-transform:rotate(20deg);'+
+                'transform:rotate(20deg);'+
+                '}'+
+                '.menuHolder li.s2:nth-of-type(2) > a {background:#FF4040;'+
+                '-webkit-transform:rotate(10deg);'+
+                '-moz-transform:rotateZ(10deg);'+
+                '-ms-transform:rotate(10deg);'+
+                '-o-transform:rotate(10deg);'+
+                'transform:rotate(10deg);'+
+                '}'+
+                '.menuHolder li.s2:nth-of-type(1) > a {background:palegoldenrod;'+
+                '-webkit-transform:rotate(0deg);'+
+                '-moz-transform:rotateZ(0deg);'+
+                '-ms-transform:rotate(0deg);'+
+                '-o-transform:rotate(0deg);'+
+                'transform:rotate(0deg);'+
+                '}'+
+ 
+                '.menuHolder li.s1:hover ul.p2 {'+
+                '-webkit-transform:rotate(0deg);'+
+                '-moz-transform:rotateZ(0deg);'+
+                '-ms-transform:rotate(0deg);'+
+                '-o-transform:rotate(0deg);'+
+                'transform:rotate(0deg);'+
+                '}'+
+ 
+                '.menuHolder ul li:hover > a {background:#f00; color:#fff;}'+
+                '.menuHolder li.s2:hover > a {background:#d00; color:#fff;}'+
+                '.menuHolder .a6 li:hover > a {background:#b00; color:#fff;}'+
+                '.menuHolder .a5 li:hover > a {background:#b00; color:#fff;}'+
+                '.menuHolder .a3 li:hover > a {background:#b00; color:#fff;}'+
+ 
+ 
+ 
+                '.menuWindow {width:110px; height:200px; overflow:hidden; position:absolute; left:0; top:480px;z-index:99999;'+
+                '-webkit-transition:0s 1s;'+
+                '-moz-transition:0s 1s;'+
+                '-ms-transition:0s 1s;'+
+                '-o-transition:0s 1s;'+
+                'transition:0s 1s;'+
+                '}'+
+ 
+                '.menuHolder:hover .menuWindow {width:310px; height:310px;'+
+                '-webkit-transition:0s 0s;'+
+                '-moz-transition:0s 0s;'+
+                '-ms-transition:0s 0s;'+
+                '-o-transition:0s 0s;'+
+                'transition:0s 0s;'+
+                '}'+
+ 
+                '.menuHolder span {display:block;'+
+                '-webkit-transform:rotate(5deg);'+
+                '-moz-transform:rotateZ(5deg);'+
+                '-ms-transform:rotate(5deg);'+
+                '-o-transform:rotate(5deg);'+
+                'transform:rotate(5deg);'+
+                '}'+
+                
+                '#myNewDiv {width:100px;height:32px; overflow:hidden;position:absolute; left:0; top:500px;z-index:99999;background-color:#FF34B3;border-radius:10px 10px 10px 10px;}'+
+                '#myNewDiv #downloadMusic{width:70px;height:32px;color:#000; text-decoration:none; font:bold 22px/30px arial, sans-serif; text-align:center;margin-left:10px; }'+
+                
+                '#downloadDocDiv {width:222px;height:34px; overflow:hidden;position:absolute; left:0; top:500px;z-index:99999;background-color:orangered;border-radius:10px 10px 10px 10px;}'+
+                '#downloadDocDiv #downloadDoc{width:80px;height:32px;color:#000; text-decoration:none; font:bold 24px/30px arial, sans-serif; text-align:center;margin-left:10px; }'+
+ 
+                '#myjdfanxianDiv {width:120px;height:34px; overflow:hidden;position:absolute; left:20px; top:750px;z-index:99999;background-color:orangered;border-radius:10px 10px 10px 10px;}'+
+                '#myjdfanxianDiv #myjdfanxian{width:60px;height:32px;color:#000; text-decoration:none; font:bold 24px/30px arial, sans-serif; text-align:center;margin-left:10px; }'+
+                '#mynewcouponDiv {margin-left:650px;width:76px; font-weight: 700;height: 46px;line-height: 46px;padding: 0 26px;position:absolute; top:1900px;z-index:99999;background-color:white;font-size: 18px;font-family: "microsoft yahei";}'
+                
+                );
+ 
+                
+    // =========================================================================================
+    // ======================================= 2025-02-18 V2版 =================================
+    // =========================================================================================
+ 
+    //   myjdfanxianDiv  myjdfanxian
+    // myNewDiv  downloadMusicDiv  downloadMusic
+ 
+    //console.log("=========HAHAHAHHA==========: ");
+ 
+    var videoUrl= window.location.href;
+    var version = "20250218002aabbg66";
+    var flag = false;
+ 
+    var myUrlList = [ {
+        url: "https://yparse.ik9.cc/index.php?url=",
+        id: "yparse"
+    },{
+        url: "https://www.ckplayer.vip/jiexi/?url=",
+        id: "ckplayer"
+    }, {
+        url: "https://jx.m3u8.tv/jiexi/?url=",
+        id: "m3u8"
+    }, {
+        url: "https://www.pouyun.com/?url=",
+        id: "pouyun"
+    }, {
+        url: "https://jx.xmflv.com/?url=",
+        id: "xmflv"
+    }, {
+        url: "https://www.yemu.xyz/?url=",
+        id: "yemu"
+    }, {
+        url: "https://jx.nnxv.cn/tv.php?url=",
+        id: "nnxv"
+    }, {
+       
+        url: "https://jx.playerjy.com/?ads=0&url=",
+        id: "JX"
+    }, {
+        url: "https://www.8090g.cn/?url=",
+        id: "8090g"
+    }, {
+        url:"https://www.xuewuhen.xyz/myvideo.html?version="+version+"&url=",
+        id: "junchangxiao"
+    } ];
+    // id="junchangxiao" href="https://www.junchangxiao.xyz/myvideo.html?url='
+ 
+ 
+    //myUrlList.forEach((function(e) {
+    ////console.log(e.url ,e.title);
+    //}))
+ 
+ 
+    // document.addEventListener('click', function(event) {
+    //     //console.log("=========页面被点击了！==========: ");
+    //     videoUrl= window.location.href;
+    //     //console.log("=========videoUrl==========: ",videoUrl);
+ 
+    //     myUrlList.forEach((function(e) {
+    //         // 获取<a>元素
+    //         var link = document.getElementById(e.id);
+    //         var newHref = e.url + videoUrl;
+    //         // 设置新的href值
+    //         link.setAttribute('href', newHref);
+    //     }))
+    // });
+ 
+ 
+ 
+    // =========================================================================================
+    // ======================================= CSDN 免登录复制 =================================
+    // =========================================================================================
+ 
+    if(location.hostname.indexOf("csdn.net") > 0){
+        flag = false;
+        // Your code here...
+        //console.log("====================HELLO CSDN!!!=======================");
+ 
+        // 代码可以拖动复制
+        var style = 'code { user-select: text !important}';
+ 
+        //查看文章全文
+        style +=".article_content{height:auto !important;max-height:unset !important;}";
+        //代码自动展开
+        style +=".set-code-hide{height: auto !important;max-height: unset !important;overflow-y: hidden !important;}";
+ 
+        //右下角登录隐藏
+        style +=".passport-login-tip-container {display:none !important;}";
+ 
+        // 在整个文档前插入修改后的XML样式表.
+        document.insertBefore(
+            document.createProcessingInstruction('xml-stylesheet','type="text/css" href="data:text/css;utf-8,' + encodeURIComponent(style) + '"'),
+            document.documentElement
+        );
+ 
+        window.onload=()=>{
+            $("#content_views").unbind("copy")
+            //遍历每个代码块
+            document.querySelectorAll(".hljs-button.signin").forEach((elem) => {
+                // 设置标题
+                elem.setAttribute("data-title", "一键复制");
+                // 设置颜色
+                elem.setAttribute("style", "background-color:red;");
+                //elem.setBackGroudColor("red");
+                elem.onclick = function (elem) {
+                    elem.stopPropagation();
+                    navigator.clipboard
+                        .writeText(this.parentNode.innerText)
+                        .then(() => {this.setAttribute("data-title", "复制成功") })
+                };
+            });
+        }
+    }
+ 
+ 
+    // =========================================================================================
+    // ====================== OCR全网复制粘贴|百度文库，道客巴巴等  ==============================
+    // =========================================================================================
+ 
+    if(location.href.indexOf('wenku') != -1 ||
+        location.href.indexOf('book118') != -1 ||
+    
+        location.href.indexOf('doc88') != -1 ){
+            
+        flag = false;
+ 
+        // myNewDiv  downloadMusicDiv  downloadMusic
+        var bbmusicdiv=document.createElement("div");  
+            bbmusicdiv.innerHTML=
+                '<div id="downloadDocDiv">'+
+                '<a id="downloadDoc" href="https://www.xiaolizio.xyz/wayOCR.html?version='+version+'"  target="_blank" title="点击跳转到新页签">OCR全网文字提取复制</a>'+
+                
+                '</div>';
+ 
+      //  document.body.appendChild(bbmusicdiv);
+    }
+ 
+ 
+    var utils = {
+        hideButton: function ($) {
+            $("body").append("<style id=\"copy-hide\">#_copy{display: none !important;}</style>");
+        },
+        showButton: function ($) {
+            $("#copy-hide").remove();
+        },
+        removeAttributes: function ($, selector, attr) {
+            if (attr === void 0) { attr = []; }
+            var dom = $(selector);
+            attr.forEach(function (item) { return dom.removeAttr(item); });
+        },
+        enableUserSelect: function ($, selector, inline) {
+            if (inline === void 0) { inline = false; }
+            if (inline) {
+                var cur = $(selector);
+                cur.css("user-select", "auto");
+                cur.css("-webkit-user-select", "auto");
+            }
+            else {
+                var template = "\n                <style>\n                    ".concat(selector, "{\n                        user-select: auto !important;\n                        -webkit-user-select: auto !important;\n                    }\n                </style>\n            ");
+                $("body").append(template.replace(/\s*/, " "));
+            }
+        },
+        enableOnSelectStart: function ($, selector) {
+            $(selector).on("selectstart", stopJQueryPropagation);
+        },
+        enableOnContextMenu: function ($, selector) {
+            $(selector).on("contextmenu", stopJQueryPropagation);
+        },
+        enableOnCopy: function ($, selector) {
+            $(selector).on("copy", stopJQueryPropagation);
+        },
+        enableOnKeyDown: function ($, selector) {
+            $(selector).on("keydown", function (e) {
+                if (e.key === "c" && e.ctrlKey)
+                    return stopJQueryPropagation(e);
+            });
+        },
+        enableOnSelectStartByCapture: function () {
+            document.addEventListener("selectstart", stopNativePropagation, true);
+        },
+        enableOnContextMenuByCapture: function () {
+            document.addEventListener("contextmenu", stopNativePropagation, true);
+        },
+        enableOnCopyByCapture: function () {
+            document.addEventListener("copy", stopNativePropagation, true);
+        },
+        enableOnKeyDownByCapture: function () {
+            document.addEventListener("keydown", stopNativePropagation, true);
+        },
+    };
+ 
+    // =========================================================================================
+    // ============================= 网易云音乐|QQ音乐免费下载  =================================
+    // =========================================================================================
+ 
+    if(location.href.indexOf('music.163') != -1 ||
+        location.href.indexOf('y.qq') != -1 ){
+ 
+        // myNewDiv  downloadMusicDiv  downloadMusic
+        var musicdiv=document.createElement("div");  
+            musicdiv.innerHTML='<div id="myNewDiv">'+
+                '<div id="downloadMusicDiv">'+
+                '<a id="downloadMusic" href="https://www.xiaolizio.xyz/downloadMusic.html?version='+version+'"  target="_blank" title="点击跳转到新页签">下载音乐</a>'+
+                '</div>';
+ 
+          //  document.body.appendChild(musicdiv);
+    }
+ 
+ 
+ 
+    var urlList = [ {
+        url: "https://jx.m3u8.tv/jiexi/?url=",
+        title: "\u2464\u53f7\u63a5\u53e3"
+    }, {
+        url: "https://z1.m1907.top/?jx=",
+        title: "\u73a9\u7684\u55e8\u2014\u201428-\u82e5\u63a5\u53e3\u5931\u6548\u53ef\u53cd\u9988\uff01QQ\u7fa4:340569308"
+    }, {
+        title: "ckplayer",
+        url: " https://www.ckplayer.vip/jiexi/?url="
+    }, {
+        title: "qqwtt",
+        url: "https://jx.qqwtt.com/?url="
+    }, {
+        title: "\u5256\u5143",
+        url: "https://www.pouyun.com/?url="
+    }, {
+        url: "https://www.8090.la/8090/?url=",
+        title: "\u5168\u80fdvip\u63a5\u53e3\u2461"
+    }, {
+        title: "\u76d8\u53e4",
+        url: "https://www.pangujiexi.com/jiexi/?url="
+    }, {
+        title: "eptept",
+        url: "https://dmjx.m3u8.tv/?url="
+    },{
+        url: "https://www.ckplayer.vip/jiexi/?url=",
+        title: "\u63a5\u53e3:Ckplayer"
+    }, {
+        url: "https://yparse.ik9.cc/index.php?url=",
+        title: "\u63a5\u53e3:\u4e91\u6790"
+    }, {
+        url: "https://www.8090g.cn/?url=",
+        title: "\u63a5\u53e3:8090"
+    }, {
+        title: "BL",
+        url: "https://vip.bljiex.com/?v="
+    }, {
+        url: "https://www.mtosz.com/m3u8.php?url=",
+        title: "Mao\u89e3\u6790"
+    }, {
+        title: "play",
+        url: "https://www.playm3u8.cn/jiexi.php?url="
+    }, {
+        title: "\u591c\u5e55",
+        url: "https://www.yemu.xyz/?url="
+    }, {
+        title: "TV\u89e3\u6790[\u817e\u8baf (\u8292\u679c)]",
+        url: "https://jx.m3u8.tv/jiexi/?url="
+    }, {
+        title: "\u51b0\u8c46",
+        url: "https://api.qianqi.net/vip/?url="
+    }, {
+        title: "JY",
+        url: "https://jx.playerjy.com/?url="
+    }, {
+        title: "JY\u89e3\u6790",
+        url: "https://jx.we-vip.com/?url="
+    }, {
+        title: "\u2478\u53f7\u89e3\u6790\u63a5\u53e3",
+        url: "https://www.8090g.cn/jiexi/?url="
+    }, {
+        title: "\u7efc\u5408/B\u7ad9",
+        url: "https://jx.jsonplayer.com/player/?url="
+    }, {
+        title: "Player-JY",
+        url: "https://jx.playerjy.com/?url="
+    }, {
+        title: "\u867e\u7c731",
+        url: "https://jx.xmflv.com/?url="
+    }, {
+        title: "\u867e\u7c732",
+        url: "https://jx.xmflv.cc/?url="
+    }, {
+        title: "m1907",
+        url: "https://im1907.top/?jx="
+    }, {
+        title: "CK",
+        url: "https://jx.m3u8.tv/jiexi/?url="
+    }, {
+        title: "8090",
+        url: "https://www.8090g.cn/?url="
+    }, {
+        title: "qianqi",
+        url: "https://api.qianqi.net/vip/?url="
+    }, {
+        title: "\u6837\u56fe\u5185\u7f6e",
+        url: "https://jx.yangtu.top/?url="
+    } ];
+    //urlList.forEach((function(e) {
+    // h += '<option value="' + e.url + '" selected="">' + e.title + "</option>";
+ 
+ 
+    //     var tempIdList = [];
+    //     myUrlList.forEach((function(e) {
+    //         tempIdList.push(e.id);
+    //     }));
+    //     //console.log("====tempIdList====",tempIdList);
+    //    // //console.log("====location.href====",location.href);
+    // var locationUrl = location.href;
+    // alert(locationUrl);
+    //     tempIdList.forEach((function(elem) {
+    //         if(location.href.indexOf(elem)!=-1){
+    //             //console.log("====elem====:",elem);
+    //             flag = false;
+    //         }
+    //     }));
+    //     //if(tempIdList.some(elem => location.href.includes(elem))){
+    //     var tempIdList = [];
+    //     myUrlList.forEach((function(e) {
+    //         tempIdList.push(e.id);
+    //     }));
+    //     //console.log("====tempIdList====",tempIdList);
+    //    // //console.log("====location.href====",location.href);
+    // var locationUrl = location.href;
+    // alert(locationUrl);
+    //     tempIdList.forEach((function(elem) {
+    //         if(location.href.indexOf(elem)!=-1){
+    //             //console.log("====elem====:",elem);
+    //             flag = false;
+    //         }
+    //     }));
+    //     //if(tempIdList.some(elem => location.href.includes(elem))){
+ 
+    var tempIdList = [];
+    myUrlList.forEach((function(e) {
+        tempIdList.push(e.id);
+    }));
+    //console.log("====tempIdList====",tempIdList);
+    //console.log("====window.location.hostname====",window.location.hostname);
+    // var locationUrl = location.href;
+    // if(locationUrl.length > 15){
+    //     locationUrl=locationUrl.substring(0, 15);
+    // }
+    //alert(locationUrl);
+    // tempIdList.forEach((function(elem) {
+    //     if(location.hostname.indexOf(elem)!=-1){
+    //         //console.log("====elem====:",elem);
+    //         flag = false;
+    //     }
+    // }));
+    for (var tempId of tempIdList) {
+        if(window.location.hostname.indexOf(tempId)!=-1){
+            flag = false;
+        }
+    }
+    //     //if(tempIdList.some(elem => location.href.includes(elem))){
+ 
+ 
+    //console.log("=====域名location.hostname:",location.hostname);
+    // if (location.hostname.indexOf("iqiyi") > 0 ||
+    //     location.hostname.indexOf("youku") > 0 ||
+    //     location.hostname.indexOf("le") > 0 ||
+    //     location.hostname.indexOf("v.qq") > 0 ||
+    //     location.hostname.indexOf("tudou") > 0 ||
+    //     location.hostname.indexOf("mgtv") > 0 ||
+    //     location.hostname.indexOf("acfun") > 0 ||
+    //     location.hostname.indexOf("bilibili") > 0 ||
+    //     location.hostname.indexOf("1905") > 0 ||
+    //     location.hostname.indexOf("pptv") > 0 ||
+    //     location.hostname.indexOf("fun.tv") > 0 ||
+    //     location.hostname.indexOf("sohu") > 0 ) {
+ 
+    //     flag = true;
+    // }
+ 
+     if(videoUrl.indexOf("vip.1905.com") > 0 ||
+       videoUrl.indexOf("v.youku.com") > 0 ||
+ 
+       videoUrl.indexOf("v.qq.com") > 0 ||
+       videoUrl.indexOf("mgtv.com") > 0 ||
+ 
+       videoUrl.indexOf("sohu.com") > 0 ||
+       videoUrl.indexOf("bilibili.com") > 0 ||
+ 
+       videoUrl.indexOf("le.com") > 0 ||
+       videoUrl.indexOf("v.yinyuetai.com") > 0 ||
+ 
+       videoUrl.indexOf("vip.pptv.com") > 0 ||
+       videoUrl.indexOf("tudou.com") > 0 ||
+ 
+       videoUrl.indexOf("acfun.cn") > 0 ||
+       videoUrl.indexOf("fun.tv") > 0 ||
+       videoUrl.indexOf("iqiyi.com") > 0 ){
+ 
+        flag = true;
+    }
+ 
+ 
+    function showImage(imgSrc) {
+        var imageContainer = document.getElementById('image-container');
+        imageContainer.style.display = 'block';
+        imageContainer.innerHTML = '<img style="width:200px;height:225px;margin-left:550px;position:absolute;z-index:50;" src="' + imgSrc + '">';
+    }
+ 
+    function hideImage() {
+        var imageContainer = document.getElementById('image-container');
+        imageContainer.style.display = 'none';
+        imageContainer.innerHTML = '';
+    }
+ 
+    // =========================================================================================
+    // ======================================= CSDN 免登录复制 =================================
+    // =========================================================================================
+ 
+    // if(location.hostname.indexOf("csdn.net") > 0){
+    //     flag = false;
+    //     // Your code here...
+    //     //console.log("====================HELLO CSDN!!!=======================");
+ 
+    //     // 代码可以拖动复制
+    //     var style = 'code { user-select: text !important}';
+ 
+    //     //查看文章全文
+    //     style +=".article_content{height:auto !important;max-height:unset !important;}";
+    //     //代码自动展开
+    //     style +=".set-code-hide{height: auto !important;max-height: unset !important;overflow-y: hidden !important;}";
+ 
+    //     //右下角登录隐藏
+    //     style +=".passport-login-tip-container {display:none !important;}";
+ 
+    //     // 在整个文档前插入修改后的XML样式表.
+    //     document.insertBefore(
+    //         document.createProcessingInstruction('xml-stylesheet','type="text/css" href="data:text/css;utf-8,' + encodeURIComponent(style) + '"'),
+    //         document.documentElement
+    //     );
+ 
+    //     window.onload=()=>{
+    //         $("#content_views").unbind("copy")
+    //         //遍历每个代码块
+    //         document.querySelectorAll(".hljs-button.signin").forEach((elem) => {
+    //             // 设置标题
+    //             elem.setAttribute("data-title", "一键复制");
+    //             // 设置颜色
+    //             elem.setAttribute("style", "background-color:red;");
+    //             //elem.setBackGroudColor("red");
+    //             elem.onclick = function (elem) {
+    //                 elem.stopPropagation();
+    //                 navigator.clipboard
+    //                     .writeText(this.parentNode.innerText)
+    //                     .then(() => {this.setAttribute("data-title", "复制成功") })
+    //             };
+    //         });
+    //     }
+    // }
+ 
+    function playVideo(url, videoContainerId) {
+ 
+        //console.log("=====playVideo---url:====", url);
+        var id = videoContainerId + "V";
+        const div = document.getElementById("ckplayerV");
+         // 清空div内容
+        div.innerHTML = '';
+ 
+        // const myIframe = document.getElementById("iframe");
+        // myIframe.src = url;
+ 
+        // 创建iframe元素并设置属性
+        const myIframe = document.createElement('iframe');
+        myIframe.width = "100%";
+        myIframe.height = "100%";
+        myIframe.src = url;
+        myIframe.id = myVideoIframe;
+        myIframe.allowfullscreen = "true";
+ 
+        // myIframe.webkitallowfullscreen = "true";
+        // myIframe.mozallowfullscreen = "true";
+ 
+        //myIframe.allowfullscreen = true;
+        // myIframe.webkitallowfullscreen = true;
+        // myIframe.mozallowfullscreen = true;
+ 
+        // 将iframe添加到div中
+        div.appendChild(myIframe);
+    }
+ 
+ 
+    // 	//点击导航栏滑动到对应板块
+    // 	$('.menu li').eq(0).addClass('cur');
+    // 	$('.menu li').on('click', function () {
+    // 		$(this).addClass('cur').siblings().removeClass('cur');
+    // 		var index = $(this).attr('data-href');
+    // 		var elOffset = $(index).offset().top;
+    // 		$('html,body').animate({ 'scrollTop': elOffset }, 800);
+    // 	})
+ 
+ 
+    // 	//创建页面滚动完成之后的回调事件
+    // 	$.fn.scrollEnd = function (callback, timeout) {
+    // 		$(this).scroll(function () {
+    // 			var $this = $(this);
+    // 			if ($this.data('scrollTimeout')) {
+    // 				clearTimeout($this.data('scrollTimeout'));
+    // 			}
+    // 			$this.data('scrollTimeout', setTimeout(callback, timeout));
+    // 		});
+    // 	};
+ 
+    // 	//with a 1000ms timeout
+    // 	$(window).scrollEnd(function () {
+    // 		var ST = $(this).scrollTop();
+    // 		$('.item').each(function () {
+    // 			var elOffset = $(this).offset().top;
+    // 			if (ST >= elOffset) {
+    // 				var index = $(this).index();
+    // 				$('.menu li').eq(index).addClass('cur').siblings().removeClass('cur');
+    // 			}
+    // 		})
+    // 	}, 0);
+    //
+ 
+ 
+ 
+    var allVideoUrls = [
+        {title:"云解析",type:"1",url:"https://yparse.ik9.cc/index.php?url="},
+        {title:"YT",type:"1",url:"https://jx.yangtu.top/?url="},
+        {title:'JY解析',type:"1",url:'https://jx.we-vip.com/?url=',},
+        {title:"⑸号解析",type:"1",url:"https://www.8090g.cn/jiexi/?url="},
+        {title:"M1907解析",type:"1",url:"https://im1907.top/?jx="},
+        {title:"管理者",type:"1",url:"https://www.administratorw.com/video.php?url="},
+        {title:"冰豆",type:"1",url:"https://api.qianqi.net/vip/?url="},
+        {title:"人人解析",type:"1",url:"https://vip.mpos.ren/v/?url="},
+        {title:"ckmov",type:"1",url:"https://www.ckmov.com/?url="},
+        {title:"剖云解析",type:"1",url:"https://jx.qqwtt.com/?url="},
+        {title:"剖元",type:"1",url:"https://www.pouyun.com/?url="},
+        {title:"盘古",type:"1",url:"https://www.pangujiexi.com/jiexi/?url="},
+        {title:"eptept",type:"1",url:"https://dmjx.m3u8.tv/?url="},
+        {title:"BL",type:"1",url:"https://svip.bljiex.com/?v="},
+        {title:"play",type:"1",url:"https://www.playm3u8.cn/jiexi.php?url="},
+        {title:"夜幕",type:"1",url:"https://www.yemu.xyz/?url="},
+        {title:"Player-JY",type:"1",url:"https://jx.playerjy.com/?url="},
+        {title:"虾米",type:"1",url:"https://jx.xmflv.com/?url="},
+        {title:"yparse",type:"1",url:"https://jx.yparse.com/index.php?url="},
+        {title:"猪蹄",type:"1",url:"https://jx.iztyy.com/Bei/?url="},
+        {title:"qianqi",type:"1",url:"https://api.qianqi.net/vip/?url="},
+        {title:"M1907",type:"0",url:"https://z1.im1907.top/?jx="},
+        {title:"yparse",type:"0",url:"https://jx.yparse.com/index.php?url="},
+        {title:"玩的嗨",type:"0",url:"http://vip.wandhi.com/?v="},
+        {type:"1",url:"https://jx.m3u8.tv/jiexi/?url=",title:"⑤号接口"},
+        {type:"1",url:"https://www.8090.la/8090/?url=",title:"全能vip②"},
+        {type:"1",url:"https://www.mtosz.com/m3u8.php?url=",title:"Mao解析"},
+        {type:"1",url:"https://movie.heheda.top/?v=",title:"风影阁"},
+        {title:"BL智能解析",type:"1",url:"https://svip.bljiex.cc/?v="},
+        {title:"综合/B站",type:"1",url:"https://jx.jsonplayer.com/player/?url="},
+        {title:"M1907",type:"1",url:"https://z1.im1907.top/?&jx="},
+        {title:"ckplayer",type:"1",url:"https://www.ckplayer.vip/jiexi/?url="},
+        {title:"M3U8解析",type:"1",url:"https://jx.m3u8.tv/jiexi/?url="},
+        {title:"8090解析",type:"1",url:"https://www.8090g.cn/jiexi/?url="},
+        {title:"咸鱼解析",type:"1",url:"https://jx.xyflv.cc/?url="},
+        {title:"极速解析",type:"1",url:"https://jx.2s0.cn/player/?url="},
+ 
+    ];
+ 
+    // =========================================================================================
+    // ================================== CSDN 免登录复制-废弃 =================================
+    // =========================================================================================
+ 
+    // if(location.hostname.indexOf("csdn.net") > 0){
+    //     flag = false;
+    //     // Your code here...
+    //     //console.log("====================HELLO CSDN!!!=======================");
+ 
+    //     // 代码可以拖动复制
+    //     var style = 'code { user-select: text !important}';
+ 
+    //     //查看文章全文
+    //     style +=".article_content{height:auto !important;max-height:unset !important;}";
+        
+    //     //代码自动展开
+    //     style +=".set-code-hide{height: auto !important;max-height: unset !important;overflow-y: hidden !important;}";
+ 
+    //     //右下角登录隐藏
+    //     style +=".passport-login-tip-container {display:none !important;}";
+ 
+    //     // 在整个文档前插入修改后的XML样式表.
+    //     document.insertBefore(
+    //         document.createProcessingInstruction('xml-stylesheet','type="text/css" href="data:text/css;utf-8,' + encodeURIComponent(style) + '"'),
+            
+    //         document.documentElement
+    //     );
+ 
+    //     window.onload=()=>{
+    //         $("#content_views").unbind("copy")
+    //         //遍历每个代码块
+    //         document.querySelectorAll(".hljs-button.signin").forEach((elem) => {
+    //             // 设置标题
+    //             elem.setAttribute("data-title", "一键复制");
+    //             // 设置颜色
+    //             elem.setAttribute("style", "background-color:red;");
+    //             //elem.setBackGroudColor("red");
+    //             elem.onclick = function (elem) {
+    //                 elem.stopPropagation();
+    //                 navigator.clipboard
+    //                     .writeText(this.parentNode.innerText)
+    //                     .then(() => {this.setAttribute("data-title", "复制成功") })
+    //             };
+    //         });
+    //     }
+    // }
+ 
+ 
+ 
+    function preload_all(){
+        if(theplayurl.indexOf('iqiyi') > 0) preload_iqiyi();
+    }
+ 
+    function preload_iqiyi(){
+        slog('albumId',Q.PageInfo.playPageInfo.albumId);
+        if(Q.PageInfo.playPageInfo.albumId !== undefined ){
+            var s = document.createElement("script"), el = document.getElementsByTagName("script")[0];
+            s.async = false;
+            s.src = document.location.protocol + "//cache.video.qiyi.com/jp/avlist/"+ Q.PageInfo.playPageInfo.albumId +"/1/50/";
+            el.parentNode.insertBefore(s, el);
+        }
+    }
+    function prego_all(){
+        if(theplayurl.indexOf('iqiyi') > 0){
+            prego_iqiyi();
+        }else{
+            theplayurl = window.location.href;
+        }
+    }
+ 
+    // function getMyFunction(document,newCoupondiv,dataa){
+ 
+    //     // var newButton = document.getElementById('button');
+    //     // if(newButton){
+    //     //     // 设置按钮的文本内容
+    //     //     newButton.textContent = '领券'; 
+    //     //     newButton.width="76px";
+    //     //     newButton.height="46px";
+    //     //     newButton.backgroundColor="red";
+    //     // }else{
+    //     //    // alert(666);
+    //     // }
+ 
+    //     //alert(111);
+    //     // var buyBtn=document.getElementById("deedg");
+    //     // //buyBtn.parentNode.insertBefore(newCoupondiv, buyBtn.nextSibling);
+    //     // if(buyBtn){
+    //     //    // alert(222);
+ 
+    //     // }else{
+    //     //    // alert(333);
+    //     // }
+    //     var mycouponaa=document.getElementById("mycouponaa");
+    //     if(mycouponaa){
+ 
+    //         let randomNum = Math.floor(Math.random() * 10);
+    //         //alert(randomNum);
+    //         //alert(randomNum%2 == 0); 
+    //         if(randomNum%2 == 0){
+    //             
+    //         }
+    //         // else{
+                  
+    //         //     //   myjdfanxianDiv  myjdfanxian
+    //         //     var myjdfanxianDiv=document.createElement("div");  
+    //         //     myjdfanxianDiv.innerHTML='<div id="myjdfanxianDiv">'+
+    //         //         '<div id="myjdfanxianaaDiv">'+
+    //         //         '<a id="myjdfanxian" href="https://www.xiaolizio.xyz/myjdfanxian.html"  target="_blank" title="">购物返现</a>'+
+    //         //         '</div>'+
+    //         //         '</div>';
+ 
+    //         //     document.body.appendChild(myjdfanxianDiv);
+ 
+    //         // }
+ 
+    //         //#crumb-wrap
+    //         //if(location.href.indexOf('crumb-wrap') > 0){
+ 
+    //         //   
+    //         //}
+ 
+    //     }
+ 
+    //     //document.getElementById('mycouponaa').addEventListener('click', function(event) {
+    //         //event.preventDefault(); 
+            
+    //       
+    //     //});
+    // }
+ 
+    function prego_iqiyi(){
+        var ele = document.querySelectorAll('li[class="item selected"] > span').length ?
+            document.querySelectorAll('li[class="item selected"] > span')[1] : 
+            document.querySelectorAll('li[class="item no selected"] > span')[1];
+        if(ele !== undefined ){
+            var pd = ele.parentNode.getAttribute('data-pd');
+            if(pd > 0){
+                var vinfo = tvInfoJs.data.vlist[pd-1];
+                if(vinfo.vurl.length > 0){
+                    theplayurl = vinfo.vurl;
+                }
+            }
+        }else{
+            theplayurl = window.location.href;
+        }
+    }
+ 
+    if(flag){
+ 
+        var div=document.createElement("div");
+        div.innerHTML='<div class="menuHolder">'+
+            '<div class="menuWay1"><a id="junchangxiao" href="https://www.xuewuhen.xyz/myvideo.html?version='+version+'&url='+encodeURIComponent(window.location.href)+'"  target="_blank" title="点击跳转到新页签">方式1</a></div>'+
+            '<div class="menuWindow2" style="display:none;">'+
+ 
+            '<ul class="p1">'+
+            '<li class="s1"><a href="#">方式2</a>'+
+            '<ul class="p2">'+
+ 
+ 
+            '<li class="s2"><a id="ckplayer" href="https://www.ckplayer.vip/jiexi/?url='+videoUrl+'"  target="_blank"><span>CK</span></a></li>'+
+            '<li class="s2"><a id="yparse" href="https://yparse.ik9.cc/index.php?url='+videoUrl+'"  target="_blank"><span>云解析</span></a></li>'+
+ 
+            '<li class="s2"><a id="m3u8" href="https://jx.m3u8.tv/jiexi/?url='+videoUrl+'" target="_blank"><span>M3U8</span></a></li>'+
+ 
+            '<li class="s2"><a id="yemu" href="https://www.yemu.xyz/?url='+videoUrl+'" target="_blank"><span>夜幕</span></a></li>'+
+            '<li class="s2"><a id="pouyun" href="https://www.pouyun.com/?url='+videoUrl+'"  target="_blank"><span>剖云</span></a></li>'+
+ 
+ 
+            '<li class="s2"><a id="8090g" href="https://www.8090g.cn/?url='+videoUrl+'"  target="_blank"><span>8090</span></a></li>'+
+            '<li class="s2"><a id="xmflv" href="https://jx.xmflv.com/?url='+videoUrl+'" target="_blank"><span>虾米</span></a></li>'+
+            '<li class="s2"><a id="nnxv" href="https://jx.nnxv.cn/tv.php?url='+videoUrl+'" target="_blank"><span>七哥</span></a></li>'+
+            '<li class="s2"><a id="JX" href="https://jx.playerjy.com/?ads=0&url='+videoUrl+'"  target="_blank"><span>JX</span></a></li>'+
+ 
+ 
+            '</ul>'+
+            '</li>'+
+            '</ul>'+
+            '</div>'+
+            '</div>';
+ 
+        document.body.appendChild(div);
+ 
+        // 添加点击事件
+        //document.getElementById("way1").onclick = function() {
+        //   //console.log("===方式1 按钮被点击了！===");
+ 
+        // 参数对象
+        //    var params = {
+        //        'url': window.location.href
+        //       //'type': 'ckplayer'
+        //    };
+ 
+        //   // 将参数转换为查询字符串
+        //    var queryString = Object.keys(params)
+        //    .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(params[key]))
+        //    .join('&');
+ 
+        // 打开新窗口或标签，并附加查询字符串
+        //    window.open('https://www.xiaolizio.xyz/myvideo.html?' + queryString, '_blank');
+        //};
+ 
+        document.addEventListener('click', function(event) {
+            //console.log("=========页面被点击了！==========: ");
+            videoUrl= window.location.href;
+            //console.log("=========videoUrl==========: ",videoUrl);
+ 
+            myUrlList.forEach((function(e) {
+                // 获取<a>元素
+                var link = document.getElementById(e.id);
+                var newHref = e.url + videoUrl;
+                // 设置新的href值
+                link.setAttribute('href', newHref);
+            }))
+        });
+    }
+ 
+})();
